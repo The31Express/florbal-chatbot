@@ -1,0 +1,24 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8081:5000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_NAME=florbal
+      - DB_USER=user
+      - DB_PASSWORD=pass
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: florbal
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Florbal chatbot</title>
+</head>
+<body>
+
+<h1>Florbal chatbot</h1>
+
+<input type="text" id="question" placeholder="Zeptej se na florbal">
+<button onclick="sendQuestion()">Odeslat</button>
+
+<p id="response"></p>
+
+<script>
+function sendQuestion() {
+    const question = document.getElementById("question").value;
+
+    fetch("/ai", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ question: question })
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("response").innerText = data.answer;
+    });
+}
+</script>
+
+</body>
+</html>
