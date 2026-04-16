@@ -47,12 +47,12 @@ def ai():
     API_KEY = os.environ.get("OPENAI_API_KEY")
     BASE_URL = os.environ.get("OPENAI_BASE_URL")
 
-    # 1. vezmeme otázku od uživatele
+    
     question = request.json.get("question", "")
 
-    # 2. pošleme na AI
+
     response = requests.post(
-        BASE_URL + "/chat/completions",
+        BASE_URL + "/chat",
         headers={
             "Authorization": f"Bearer {API_KEY}",
             "Content-Type": "application/json"
