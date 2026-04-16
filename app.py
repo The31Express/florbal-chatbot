@@ -52,7 +52,7 @@ def ai():
 
 
     response = requests.post(
-        BASE_URL + "/chat",
+        BASE_URL + "/chat/completions",
         headers={
             "Authorization": f"Bearer {API_KEY}",
             "Content-Type": "application/json"
