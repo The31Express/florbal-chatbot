@@ -62,7 +62,7 @@ def ai():
             "messages": [
                 {
                     "role": "user",
-                    "content": question
+                    "contemt": question
                 }
             ]
         }
