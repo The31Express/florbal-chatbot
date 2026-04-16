@@ -44,25 +44,36 @@ def save():
 
 @app.route("/ai", methods=["POST"])
 def ai():
-    try:
-        response = requests.post(BASE_URL, json={
+    API_KEY = os.environ.get("OPENAI_API_KEY")
+    BASE_URL = os.environ.get("OPENAI_BASE_URL")
+
+    # 1. vezmeme otázku od uživatele
+    question = request.json.get("question", "")
+
+    # 2. pošleme na AI
+    response = requests.post(
+        BASE_URL + "/chat/completions",
+        headers={
+            "Authorization": f"Bearer {API_KEY}",
+            "Content-Type": "application/json"
+        },
+        json={
             "model": "gemma3:27b",
             "messages": [
-                {"role": "user", "content": "Jak začít s florbalem?"}
+                {
+                    "role": "user",
+                    "content": question
+                }
             ]
-        })
+        }
+    )
 
-        print(response.status_code)
-        print(response.text)
+    data = response.json()
 
-        data = response.json()
 
-        answer = data.get("message", {}).get("content", "Žádná odpověď")
+    answer = data["choices"][0]["message"]["content"]
 
-        return {"answer": answer}
-
-    except Exception as e:
-        return {"error": str(e)}
+    return jsonify({"answer": answer})
 
 @app.route("/")
 def home():
