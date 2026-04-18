@@ -52,13 +52,12 @@ def ai():
 
 
     response = requests.post(
-        BASE_URL + "/chat/completions",
+        "/chat/completions",
         headers={
             "Authorization": f"Bearer {API_KEY}",
             "Content-Type": "application/json"
         },
         json={
-            "model": "gemma3:27b",
             "messages": [
                 {
                     "role": "user",
