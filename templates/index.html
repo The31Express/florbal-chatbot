@@ -17,7 +17,7 @@ function sendQuestion() {
     const question = document.getElementById("question").value;
 
     fetch("/ai", {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json"
         },
