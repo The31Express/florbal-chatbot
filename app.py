@@ -3,7 +3,7 @@ import requests
 import psycopg2
 import os
 
-API_KEY = "tsk-JgGoX7z7SYHhIaxAYc7gkg"
+API_KEY = "sk-JgGoX7z7SYHhIaxAYc7gkg"
 BASE_URL = "https://kurim.ithope.eu/v1"
 
 app = Flask(__name__)
